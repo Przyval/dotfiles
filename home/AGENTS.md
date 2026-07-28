@@ -13,3 +13,12 @@
 - Apply that same high standard to engineering excellence: lint, test failures, and test flakiness.
   If you see one, even if it is not caused by what you are working on right now, still get it fixed.
 - Before using "dynamic workflows", "ultra code" or any harness feature that immediately spawns a large swarm of subagents, always explain the tradeoffs and ask the user for explicit approval.
+
+# skills
+
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+  When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
+- **skill-creator** (`~/.claude/skills/skill-creator/`) - teaches the agent to create and refine skills.
+  Use it to move conditionally-useful sections out of memory files into skills, so the system prompt
+  stays small and the detail loads only when actually needed.
+- Do not install skills from the internet without reading them first, no matter how many stars they have.

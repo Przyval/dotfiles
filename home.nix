@@ -97,19 +97,19 @@ in
   home.file.".config/zsh/personal.zsh".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/zsh/personal.zsh";
 
-  # DINONAKTIFKAN -- keputusan ditunda.
-  # Kedua berkas ini dipakai BERSAMA oleh ekstensi Claude Code di VS Code dan
-  # claude CLI di terminal. Menautkannya ke berkas Kun Chen akan mengganti
-  # instruksi pribadi (trigger /graphify, email) dan settings yang sedang
-  # dipakai 6 sesi VS Code yang berjalan. Aktifkan hanya setelah isinya
-  # dibandingkan berdampingan dan digabungkan.
-  #
-  # home.file.".claude/settings.json".source =
-  #   config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
-  # home.file.".claude/CLAUDE.md".source =
-  #   config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+  # Satu memory file untuk semua agen -- pola Kun Chen. Isi CLAUDE.md lama
+  # (trigger /graphify) sudah digabungkan ke home/AGENTS.md, jadi tidak ada
+  # yang hilang. Berkas lama tetap diselamatkan sebagai *.hm-bak.
+  home.file.".claude/CLAUDE.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
 
-  # Codex dan opencode tidak dipakai Claude Code, jadi aman diaktifkan.
+  # settings.json BUKAN berkas lintas-agen -- ia khusus Claude, dan Kun Chen
+  # men-symlink-nya semata agar terversi di dotfiles. Isinya di repo ini adalah
+  # GABUNGAN: permissions, plugin mattpocock, dan effortLevel milik mesin ini,
+  # ditambah statusLine milik Kun Chen. Menyalin berkasnya mentah-mentah akan
+  # mencabut plugin dan mengembalikan mode izin.
+  home.file.".claude/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
   home.file.".codex/AGENTS.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
   home.file.".config/opencode/AGENTS.md".source =
