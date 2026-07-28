@@ -165,14 +165,25 @@ Salin manual dari mesin lama ke `home/.config/zsh/personal.zsh`.
 # nixpkgs punya pi-coding-agent tapi tertinggal dua minor, jadi lewat npm.
 curl -fsSL https://pi.dev/install.sh | sh
 
+# Codex CLI -- harness ketiga.
+# nixpkgs-26.05-darwin yang dipin repo ini hanya punya 0.133.0, dua belas minor
+# di belakang npm. Perhatikan: `nix search nixpkgs` melaporkan 0.144.4 karena
+# mengueri registry flake, BUKAN rilis yang dipin flake.lock.
+npm install -g @openai/codex
+
 # treehouse -- manajemen git worktree
 curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh
 
 # no-mistakes -- pipeline validasi sebelum PR
 curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
 
-# lavish -- skill perencanaan interaktif; jalankan dari $HOME agar global
-cd ~ && npx skills add kunchenguid/lavish-axi --skill lavish
+# Skill AXI. Flag -g memasang global; tanpa itu skill mendarat di direktori
+# kerja saat ini, bukan di ~/.agents/skills.
+cd ~
+npx skills add kunchenguid/lavish-axi --skill lavish -g
+npx skills add kunchenguid/gh-axi --skill gh-axi -g
+npx skills add kunchenguid/chrome-devtools-axi --skill chrome-devtools-axi -g
+npx skills add anthropics/skills --skill skill-creator -g
 
 # firstmate -- orkestrator agen; dijalankan lewat harness, bukan dipasang
 git clone https://github.com/kunchenguid/firstmate && cd firstmate && claude

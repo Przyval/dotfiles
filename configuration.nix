@@ -138,6 +138,7 @@
       "zeromq"
       "zimg"
       "gnhf"                # tool Kun Chen; ada di homebrew-core, sebelumnya via npm
+      "opencode"            # harness keempat; brew 1.18.5, terdekat dgn npm
     ];
     casks = [
       "android-commandlinetools"
