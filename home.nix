@@ -44,6 +44,19 @@ in
       #      interpolasi kalau ditempel ke dalam string ini.
       # Ia menginisialisasi nvm, tempat `claude` CLI terminal terpasang.
       [ -f "$HOME/.config/zsh/personal.zsh" ] && . "$HOME/.config/zsh/personal.zsh"
+
+      # brew shellenv di atas dan personal.zsh sama-sama MEMPREPEND PATH,
+      # menggeser profil Nix ke belakang /opt/homebrew/bin. Akibatnya `rg`
+      # teresolusi ke Homebrew, bukan ke paket yang dideklarasikan home.packages.
+      # Repo hulu tidak mengalami ini karena initContent-nya tidak memanggil
+      # brew shellenv sama sekali -- nix-homebrew sudah menaruh `brew` di
+      # /run/current-system/sw/bin. Mesin ini memerlukannya karena 228 paket
+      # Homebrew-nya hidup di /opt/homebrew/bin.
+      #
+      # SENGAJA hanya profil per-user, bukan /run/current-system/sw/bin: profil
+      # sistem memuat brew, bash, dan zsh, dan memprioritaskannya akan mengubah
+      # biner `brew` yang dipakai interaktif -- jauh melampaui kebutuhan.
+      export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
     '';
     shellAliases = {
       ".." = "cd ..";

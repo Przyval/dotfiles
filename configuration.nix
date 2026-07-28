@@ -137,6 +137,7 @@
       "xvid"
       "zeromq"
       "zimg"
+      "gnhf"                # tool Kun Chen; ada di homebrew-core, sebelumnya via npm
     ];
     casks = [
       "android-commandlinetools"
@@ -152,6 +153,7 @@
       "temurin@17"
       "vlc"
       "wezterm"
+      "opensuperwhisper"    # input suara lokal; sebelumnya .dmg manual
     ];
   };
 }

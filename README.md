@@ -143,6 +143,51 @@ That needs network access once; after that it's offline.
 Neovim and WezTerm both use the rose-pine moon theme.
 Neovim keeps italics off and uses a transparent background on macOS, Windows, and WSL so it matches the terminal setup.
 
+## Setup tambahan di luar Nix
+
+Fork ini menambahkan beberapa hal yang tidak ada di repo hulu, dan sebagian
+tidak bisa dideklarasikan. Di mesin baru, `./bootstrap.sh` **tidak** akan
+memasang yang berikut — kerjakan manual setelahnya.
+
+### Config shell pribadi (wajib)
+
+`home/.config/zsh/personal.zsh` sengaja **di-gitignore**: isinya kredensial,
+nomor telepon, dan skema database internal, sedangkan repo ini publik.
+`home.nix` men-source-nya lewat symlink, jadi tanpa berkas itu shell tetap jalan
+tapi nvm, pyenv, dan PATH proyek tidak terinisialisasi.
+
+Salin manual dari mesin lama ke `home/.config/zsh/personal.zsh`.
+
+### Tool workflow yang tidak tersedia di repositori mana pun
+
+```sh
+# Pi -- harness untuk model non-Claude.
+# nixpkgs punya pi-coding-agent tapi tertinggal dua minor, jadi lewat npm.
+curl -fsSL https://pi.dev/install.sh | sh
+
+# treehouse -- manajemen git worktree
+curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh
+
+# no-mistakes -- pipeline validasi sebelum PR
+curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
+
+# lavish -- skill perencanaan interaktif; jalankan dari $HOME agar global
+cd ~ && npx skills add kunchenguid/lavish-axi --skill lavish
+
+# firstmate -- orkestrator agen; dijalankan lewat harness, bukan dipasang
+git clone https://github.com/kunchenguid/firstmate && cd firstmate && claude
+```
+
+`gnhf` dan `opensuperwhisper` **tidak** ada di daftar ini — keduanya
+dideklarasikan di `configuration.nix` dan terpasang otomatis.
+
+### Yang tidak lagi terkelola
+
+Cask `hermes` dihapus dari homebrew-cask upstream (API mengembalikan 404), dan
+entri usangnya membuat `brew bundle` gagal deserialisasi. Ia dikeluarkan dari
+`configuration.nix`. Kalau `Hermes.app` masih ada di `/Applications`, ia tetap
+berfungsi tapi di luar kendali Homebrew.
+
 ## License
 
 This repo is licensed under MIT No Attribution.
