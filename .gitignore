@@ -10,3 +10,6 @@ result-*
 
 # no-mistakes local validation state - never commit in this public repo
 .no-mistakes/
+# Config shell pribadi: memuat kredensial, nomor telepon, dan skema DB internal.
+# Repo ini fork publik -- berkas ini TIDAK boleh ikut ter-commit.
+home/.config/zsh/personal.zsh
