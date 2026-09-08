@@ -7,7 +7,22 @@
       "Write(*)",
       "Bash(file:*)"
     ],
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/michael/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",
@@ -24,8 +39,14 @@
       }
     }
   },
-  "effortLevel": "low",
+  "effortLevel": "high",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
-  "tui": "fullscreen"
+  "agentPushNotifEnabled": true,
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
 }

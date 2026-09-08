@@ -103,6 +103,13 @@ in
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
 
+  # Dirujuk dari AGENTS.md, bukan dimuat otomatis: agent hanya membacanya saat
+  # relevan, sehingga system prompt tetap ramping.
+  home.file."OPINIONS.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/OPINIONS.md";
+  home.file."VOICE.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/VOICE.md";
+
   # settings.json BUKAN berkas lintas-agen -- ia khusus Claude, dan Kun Chen
   # men-symlink-nya semata agar terversi di dotfiles. Isinya di repo ini adalah
   # GABUNGAN: permissions, plugin mattpocock, dan effortLevel milik mesin ini,
