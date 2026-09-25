@@ -16,3 +16,11 @@ copy_mode  = "prefix+y"  # herdr's copy-mode entry key; copy-mode's own internal
 [ui]
 # Agents panel order: explicit choice of "spaces" (grouped by space, the default) over "priority".
 agent_panel_sort = "spaces"
+
+[update]
+# Binari herdr dipasang lewat Homebrew dan dinaikkan oleh rebuild
+# (--upgrade-formulae=herdr di configuration.nix), jadi pemeriksaan versi
+# bawaan herdr dimatikan seperti di dotfiles Kun. manifest_check sengaja
+# TIDAK dimatikan: Kun mematikannya karena herdr-nya di Nix store yang
+# read-only, sedangkan di sini manifest deteksi agen tetap perlu diperbarui.
+version_check = false

@@ -20,7 +20,17 @@ in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+
+    # Toggle perilaku Claude Code, disamakan dengan dotfiles Kun (video
+    # 2026-09-13, 35:05). Sengaja env shell, bukan ~/.claude/settings.json,
+    # supaya Claude yang menulis ulang settings.json tidak bisa membatalkannya.
+    CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING = "1";
+    CLAUDE_CODE_DISABLE_AUTO_MEMORY = "1";
+    CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = "1";
+    CLAUDE_CODE_AUTO_COMPACT_WINDOW = "500000";  # compact otomatis di 500k token
+  };
 
   programs.zsh = {
     enable = true;
@@ -96,6 +106,16 @@ in
   # telepon; repo ini fork publik), jadi ia hidup hanya di mesin ini.
   home.file.".config/zsh/personal.zsh".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/zsh/personal.zsh";
+
+  # Keep Pi's credential and runtime state local by linking only authored files and directories.
+  home.file.".pi/agent/themes".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/themes";
+  home.file.".pi/agent/extensions".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/extensions";
+  home.file.".pi/agent/models.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/models.json";
+  home.file.".pi/agent/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/settings.json";
 
   # Satu memory file untuk semua agen -- pola Kun Chen. Isi CLAUDE.md lama
   # (trigger /graphify) sudah digabungkan ke home/AGENTS.md, jadi tidak ada
