@@ -36,3 +36,10 @@ When you are talking/posting on behalf of Michael using Michael's identity, read
   Use it to move conditionally-useful sections out of memory files into skills, so the system prompt
   stays small and the detail loads only when actually needed.
 - Do not install skills from the internet without reading them first, no matter how many stars they have.
+
+## Maintaining this file
+
+Keep this file for knowledge useful to almost every future agent session in this project.
+Do not repeat what the codebase already shows; point to the authoritative file or command instead.
+Prefer rewriting or pruning existing entries over appending new ones.
+When updating this file, preserve this bar for all agents and keep entries concise.

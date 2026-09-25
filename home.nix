@@ -97,6 +97,16 @@ in
   home.file.".config/zsh/personal.zsh".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/zsh/personal.zsh";
 
+  # Keep Pi's credential and runtime state local by linking only authored files and directories.
+  home.file.".pi/agent/themes".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/themes";
+  home.file.".pi/agent/extensions".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/extensions";
+  home.file.".pi/agent/models.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/models.json";
+  home.file.".pi/agent/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/settings.json";
+
   # Satu memory file untuk semua agen -- pola Kun Chen. Isi CLAUDE.md lama
   # (trigger /graphify) sudah digabungkan ke home/AGENTS.md, jadi tidak ada
   # yang hilang. Berkas lama tetap diselamatkan sebagai *.hm-bak.
