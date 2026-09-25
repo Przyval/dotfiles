@@ -139,6 +139,21 @@
       "zimg"
       "gnhf"                # tool Kun Chen; ada di homebrew-core, sebelumnya via npm
       "opencode"            # harness keempat; brew 1.18.5, terdekat dgn npm
+      # Dipasang kapten setelah rebuild 2026-07-28; kapten memutuskan semuanya
+      # dipertahankan, jadi dideklarasikan agar zap tidak membuangnya.
+      "amass"
+      "cargo-deny"
+      "expat"
+      "findomain"
+      "hcloud"
+      "librsvg"
+      "mysql"
+      "nak"
+      "nginx"
+      "opentofu"
+      "potrace"
+      "tmux"
+      "wireshark"
     ];
     casks = [
       "android-commandlinetools"
