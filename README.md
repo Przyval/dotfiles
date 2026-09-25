@@ -236,6 +236,14 @@ npx skills add anthropics/skills --skill skill-creator -g
 `gnhf` dan `opensuperwhisper` **tidak** ada di daftar ini — keduanya
 dideklarasikan di `configuration.nix` dan terpasang otomatis.
 
+### Integrasi herdr untuk Pi
+
+`home/.pi/agent/extensions/herdr-agent-state.ts` bukan tulisan repo ini: ia
+dipasang herdr (`herdr integration install pi`) agar status agen Pi tampil di
+herdr. Ia disimpan di sini karena `~/.pi/agent/extensions` kini symlink ke repo;
+tanpanya integrasi berhenti setelah rebuild. Kalau herdr memperbaruinya, commit
+perubahannya.
+
 ### Yang tidak lagi terkelola
 
 Cask `hermes` dihapus dari homebrew-cask upstream (API mengembalikan 404), dan
