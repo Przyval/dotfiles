@@ -36,7 +36,11 @@
     enable = true;
     onActivation.cleanup = "zap";  # remove anything not listed here
     onActivation.autoUpdate = true;
-    onActivation.extraFlags = [ "--force" ];
+    # Selain yang disebut di sini, --no-upgrade bawaan nix-darwin tetap berlaku.
+    # herdr ikut dinaikkan tiap rebuild (setelan terbaru Kun memakai Herdr >= 0.9,
+    # mis. panel "machines"); pembaruan herdr kini lewat rebuild ini, sehingga
+    # pemeriksaan versi bawaan herdr dimatikan di home/.config/herdr/config.toml.
+    onActivation.extraFlags = [ "--force" "--upgrade-formulae=herdr" ];
     # Tanpa tap ini, zap melepasnya dan supabase CLI ikut terhapus.
     taps = [ "supabase/tap" ];
     brews = [
