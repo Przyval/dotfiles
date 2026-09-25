@@ -20,7 +20,17 @@ in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+
+    # Toggle perilaku Claude Code, disamakan dengan dotfiles Kun (video
+    # 2026-09-13, 35:05). Sengaja env shell, bukan ~/.claude/settings.json,
+    # supaya Claude yang menulis ulang settings.json tidak bisa membatalkannya.
+    CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING = "1";
+    CLAUDE_CODE_DISABLE_AUTO_MEMORY = "1";
+    CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = "1";
+    CLAUDE_CODE_AUTO_COMPACT_WINDOW = "500000";  # compact otomatis di 500k token
+  };
 
   programs.zsh = {
     enable = true;
