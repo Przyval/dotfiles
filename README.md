@@ -229,8 +229,8 @@ npx skills add kunchenguid/gh-axi --skill gh-axi -g
 npx skills add kunchenguid/chrome-devtools-axi --skill chrome-devtools-axi -g
 npx skills add anthropics/skills --skill skill-creator -g
 
-# firstmate -- orkestrator agen; dijalankan lewat harness, bukan dipasang
-git clone https://github.com/kunchenguid/firstmate && cd firstmate && claude
+# Orkestrator agen milik Kun -- dijalankan lewat harness, bukan dipasang.
+# Perintahnya ada di docs/orkestrator.md.
 ```
 
 `gnhf` dan `opensuperwhisper` **tidak** ada di daftar ini — keduanya
