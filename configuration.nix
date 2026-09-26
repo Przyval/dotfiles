@@ -160,17 +160,20 @@
       "wireshark"
     ];
     casks = [
-      "android-commandlinetools"
-      "android-platform-tools"
+      # dinonaktifkan sementara: sudah ada di luar Homebrew (LocalSend.app, temurin-17.jdk) atau belum terpasang;
+      #   memasangnya ulang lewat brew bundle butuh kata sandi di tengah aktivasi dan membuat rebuild gagal.
+      #   Pasang sengaja nanti dengan: brew install --cask <nama>
+      # "android-commandlinetools"
+      # "android-platform-tools"
       "docker-desktop"
       "flutter"
       # "hermes"  -- cask DIHAPUS dari homebrew-cask upstream (API 404);
       #              entri usangnya membuat `brew bundle` gagal deserialisasi.
       #              Hermes.app dicadangkan di ~/pre-nix-backup/
-      "localsend"
+      # "localsend"
       "megacmd-app"
       "ngrok"
-      "temurin@17"
+      # "temurin@17"
       "vlc"
       "wezterm"
       "opensuperwhisper"    # input suara lokal; sebelumnya .dmg manual
