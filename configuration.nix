@@ -50,6 +50,7 @@
       # Bar atas, bingkai jendela, dan tiling gaya Kun Chen (data/kun-visual).
       "FelixKratz/formulae"   # sketchybar, borders
       "nikitabobko/tap"       # aerospace
+      "kunchenguid/tap"       # baby-menu, widget kuota AI di menu bar buatan Kun
     ];
     brews = [
       "apktool"
@@ -186,6 +187,7 @@
       "vlc"
       "wezterm"
       "opensuperwhisper"    # input suara lokal; sebelumnya .dmg manual
+      "kunchenguid/tap/baby-menu"  # widget kuota Claude/Codex di menu bar, seperti video Kun
       "nikitabobko/tap/aerospace"  # tiling + workspace bernomor gaya Kun Chen
     ];
   };
