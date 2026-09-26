@@ -20,3 +20,7 @@ result-*
 # Config shell pribadi: memuat kredensial, nomor telepon, dan skema DB internal.
 # Repo ini fork publik -- berkas ini TIDAK boleh ikut ter-commit.
 home/.config/zsh/personal.zsh
+
+# Berkas pribadi kapten (gaya bicara & pandangan): tetap lokal, repo ini publik.
+home/VOICE.md
+home/OPINIONS.md
