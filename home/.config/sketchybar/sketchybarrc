@@ -1,0 +1,94 @@
+#!/bin/bash
+# SketchyBar meniru bar atas Kun Chen (video 2026-09-13, MSbacZ99E14):
+# bar gelap bersudut bulat yang melayang, nomor workspace aktif di kiri,
+# RAM %, beban CPU, volume %, Wi-Fi di kanan. Ukuran dalam point, diukur
+# dari bingkai 1920x1080 dengan skala ~1.47 px per point.
+# Lihat data/kun-visual/report.md untuk angka mentah dan tingkat keyakinan.
+
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/colors.sh"
+
+FONT="Hack Nerd Font"
+# Ikon memakai varian Propo: di varian biasa lebar advance ikon hanya satu sel
+# (9.6 pt) padahal gambarnya 13-17 pt, sehingga ikon menimpa label. Di Propo
+# advance = lebar gambar, angka tetap monospace.
+ICON_FONT="Hack Nerd Font Propo"
+
+# Bar: tinggi 49 px -> 33 pt, jarak dari tepi atas 10 px -> 7,
+# jarak kiri/kanan 12 px -> 8, radius sudut 13 px -> 9.
+sketchybar --bar position=top \
+                 height=33 \
+                 y_offset=7 \
+                 margin=8 \
+                 corner_radius=9 \
+                 border_width=1 \
+                 border_color=$BAR_BORDER \
+                 color=$BAR_COLOR \
+                 blur_radius=30 \
+                 shadow=off \
+                 padding_left=11 \
+                 padding_right=11
+
+# Ikon RAM Kun ~25 px (~17 pt) lebar -> 16 pt; angka 8 pt per karakter -> 13 pt.
+# Celah ikon ke label 13 px (~9 pt); label ke ikon berikutnya 24 px (~16 pt).
+sketchybar --default icon.font="$ICON_FONT:Bold:16.0" \
+                     icon.color=$TEXT \
+                     label.font="$FONT:Bold:13.0" \
+                     label.color=$TEXT \
+                     icon.padding_left=0 \
+                     icon.padding_right=9 \
+                     label.padding_left=0 \
+                     label.padding_right=0 \
+                     padding_left=8 \
+                     padding_right=8
+
+# Kiri: satu kapsul foam berisi nomor workspace yang sedang aktif saja.
+# Kapsul Kun 26x36 px -> 18x24 pt, teks gelap di atas foam.
+sketchybar --add event aerospace_workspace_change \
+           --add item space left \
+           --set space icon.drawing=off \
+                       padding_left=0 \
+                       background.color=$FOAM \
+                       background.corner_radius=7 \
+                       background.height=24 \
+                       label.color=$BASE \
+                       label.font="$FONT:Bold:13.0" \
+                       label.width=18 \
+                       label.align=center \
+                       script="$PLUGIN_DIR/space.sh" \
+           --subscribe space aerospace_workspace_change
+
+# Kanan, dari paling kanan ke kiri (item kanan pertama = paling kanan).
+# Glyph Nerd Font dicocokkan dengan bingkai Kun:
+#   RAM  = nf-fa-memory   (U+EFC5)
+#   CPU  = nf-oct-cpu     (U+F4BC)
+#   vol  = nf-fa-volume_down (U+F027)
+#   wifi = nf-md-wifi     (U+F05A9)
+# Item paling kanan Kun tertutup kamera (hanya tepi kiri berbentuk "C"
+# terlihat); jam adalah tebakan, bukan pengamatan.
+sketchybar --add item clock right \
+           --set clock icon=󰥔 \
+                       update_freq=30 \
+                       script="$PLUGIN_DIR/clock.sh" \
+                       padding_right=0 \
+           --add item wifi right \
+           --set wifi icon=󰖩 \
+                      label.drawing=off \
+                      icon.padding_right=0 \
+                      script="$PLUGIN_DIR/wifi.sh" \
+           --subscribe wifi wifi_change system_woke \
+           --add item volume right \
+           --set volume icon= \
+                        script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change \
+           --add item cpu right \
+           --set cpu icon= \
+                     update_freq=5 \
+                     script="$PLUGIN_DIR/cpu.sh" \
+           --add item ram right \
+           --set ram icon= \
+                     update_freq=5 \
+                     script="$PLUGIN_DIR/ram.sh"
+
+sketchybar --update

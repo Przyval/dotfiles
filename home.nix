@@ -102,6 +102,14 @@ in
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
 
+  # Tiling, bar atas, dan bingkai jendela gaya Kun Chen (data/kun-visual).
+  home.file.".config/aerospace".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/aerospace";
+  home.file.".config/sketchybar".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/sketchybar";
+  home.file.".config/borders".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/borders";
+
   # Config shell pribadi. Berkasnya di-gitignore (memuat kredensial dan nomor
   # telepon; repo ini fork publik), jadi ia hidup hanya di mesin ini.
   home.file.".config/zsh/personal.zsh".source =

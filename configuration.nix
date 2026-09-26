@@ -21,6 +21,9 @@
       AppleShowAllExtensions = true;
     };
     dock.autohide = true;
+    # Disarankan dokumentasi AeroSpace: tanpa ini Mission Control menampilkan
+    # jendela yang disembunyikan AeroSpace sebagai kotak mungil di pojok.
+    dock.expose-group-apps = true;
     finder.FXPreferredViewStyle = "Nlsv";  # list view by default
     finder.CreateDesktop = false;          # clean desktop
     trackpad.Clicking = true;              # tap to click
@@ -42,7 +45,12 @@
     # pemeriksaan versi bawaan herdr dimatikan di home/.config/herdr/config.toml.
     onActivation.extraFlags = [ "--force" "--upgrade-formulae=herdr" ];
     # Tanpa tap ini, zap melepasnya dan supabase CLI ikut terhapus.
-    taps = [ "supabase/tap" ];
+    taps = [
+      "supabase/tap"
+      # Bar atas, bingkai jendela, dan tiling gaya Kun Chen (data/kun-visual).
+      "FelixKratz/formulae"   # sketchybar, borders
+      "nikitabobko/tap"       # aerospace
+    ];
     brews = [
       "apktool"
       "autossh"
@@ -158,6 +166,10 @@
       "potrace"
       "tmux"
       "wireshark"
+      # Tampilan desktop Kun Chen: bar atas + bingkai jendela aktif. Keduanya
+      # dijalankan oleh after-startup-command AeroSpace, bukan brew services.
+      "FelixKratz/formulae/sketchybar"
+      "FelixKratz/formulae/borders"
     ];
     casks = [
       # dinonaktifkan sementara: sudah ada di luar Homebrew (LocalSend.app, temurin-17.jdk) atau belum terpasang;
@@ -177,6 +189,7 @@
       "vlc"
       "wezterm"
       "opensuperwhisper"    # input suara lokal; sebelumnya .dmg manual
+      "nikitabobko/tap/aerospace"  # tiling + workspace bernomor gaya Kun Chen
     ];
   };
 }

@@ -1,0 +1,15 @@
+#!/bin/bash
+# JankyBorders: garis tepi jendela aktif meniru Kun (video 2026-09-13).
+# Garis Kun terukur ~3 px di video 1920x1080 (~2 pt), warna #a8cad6 setelah
+# kompresi, yaitu foam Rose Pine (#9ccfd8). Jendela tak aktif memakai
+# highlight-med agar tetap senada; di layar Kun hanya ada satu jendela per
+# workspace, jadi warna ini jarang terlihat.
+options=(
+  style=round
+  width=2.0
+  hidpi=on
+  active_color=0xff9ccfd8
+  inactive_color=0xff44415a
+)
+
+borders "${options[@]}"
